@@ -29,7 +29,8 @@ jobs:
 
       - name: Create new branch
         run: |
-          BRANCH_NAME="update-submodule-$(date +%Y%m%d%H%M%S)"
+          # BRANCH_NAME="update-submodule-$(date +%Y%m%d%H%M%S)"
+          BRANCH_NAME="update-submodule"
           git checkout -b $BRANCH_NAME
           git add actual-submod
           git commit -m "Update submodule to latest commit"
@@ -40,7 +41,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: $BRANCH_NAME
+          branch: "update-submodule"
           title: "Update submodule to latest commit"
           body: "This PR updates the submodule to the latest commit."
 
