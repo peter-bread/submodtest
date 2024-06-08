@@ -41,6 +41,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          base: "main"
           branch: "update-submodule"
           title: "Update submodule to latest commit"
           body: "This PR updates the submodule to the latest commit."
