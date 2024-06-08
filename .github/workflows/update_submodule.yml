@@ -24,10 +24,17 @@ jobs:
           git submodule update  --init --recursive --remote -f
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-      - name: Commit changes
+      # - name: Commit changes
+      #   run: |
+      #     git add actual-submod
+      #     git commit -m "Update submodule to latest commit"
+      #     git push origin main
+      - name: Create pull request
         run: |
+          git checkout -b update-submodule
           git add actual-submod
           git commit -m "Update submodule to latest commit"
-          git push origin main
+          git push origin update-submodule
+          gh pr create --title "Update submodule" --body "This pull request updates the actual-submod submodule." --base main --head update-submodule
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
