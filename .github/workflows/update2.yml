@@ -15,17 +15,15 @@ jobs:
       - name: Make changes (update submodule)
         run: |
           # git submodule update --init --recursive --remote -f
-          touch jets.txt
+          touch wiggle.txt
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.PAT }}
+          # token: ${{ secrets.PAT }}
           commit-message: Update submodule
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: actions-bot <58130806+actions-bot@users.noreply.github.com>
           branch: update-submodule
           delete-branch: false
           title: Update Submodule
@@ -34,6 +32,6 @@ jobs:
             - blah blah
             - yap yap
           assignees: peter-bread
-          reviewers: peter-bread
+          # reviewers: peter-bread
           draft: false
         
