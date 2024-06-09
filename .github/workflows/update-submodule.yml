@@ -25,12 +25,14 @@ jobs:
       - name: Save commits
         run: |
           echo '${{ toJson(github.event.client_payload.commits) }}' > commits.json
+          cat commits.json
 
 
       - name: Get commit messages
         id: commits
         run: |
           commit_messages=$(jq -r '.[].message' commits.json)
+          echo "$commit_messages"
           echo "commit_messages=$commit_messages" >> $GITHUB_OUTPUT
 
 
