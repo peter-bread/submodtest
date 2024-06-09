@@ -18,7 +18,7 @@ jobs:
       - name: Make changes (update submodule)
         run: |
           # git submodule update --init --recursive --remote -f
-          touch wiggle.txt
+          rm wiggle.txt
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
       - name: Create Pull Request
