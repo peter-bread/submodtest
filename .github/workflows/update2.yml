@@ -1,8 +1,10 @@
 name: Update Submodule
+
 on:
   repository_dispatch:
     types:
       - update-submodule
+
 jobs:
   update-submodule:
     runs-on: ubuntu-latest
@@ -22,12 +24,13 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: Update submodule
+          commit-message: "[Automated] Update submodule"
           branch: update-submodule
-          delete-branch: false
+          delete-branch: true
           title: Update Submodule
           body: |
             Update Submodule
-            ${{ github.event.client_payload.myinfo }}
+
+            ${{ github.event.client_payload.commit_msg }}
           assignees: peter-bread
           draft: false
