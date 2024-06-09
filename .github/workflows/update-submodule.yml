@@ -32,5 +32,7 @@ jobs:
             Update Submodule
 
             ${{ github.event.client_payload.commit_msg }}
+
+            ${{ github.event.client_payload.commits }}
           assignees: peter-bread
           draft: false
