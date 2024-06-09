@@ -18,15 +18,13 @@ jobs:
       - name: Make changes (update submodule)
         run: |
           git submodule update --init --recursive --remote -f
-          rm jets.txt
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.PAT }}
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PAT }}
           commit-message: Update submodule
+          author: diuhwqDFHQWEU
           branch: update-submodule
           delete-branch: false
           title: Update Submodule
