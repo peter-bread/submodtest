@@ -13,14 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}
+          # token: ${{ secrets.PAT }}
           submodules: recursive
       - name: Make changes (update submodule)
         run: |
-          # git submodule update --init --recursive --remote -f
-          rm wiggle.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          git submodule update --init --recursive --remote -f
+          rm jets.txt
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.PAT }}
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
@@ -35,6 +35,4 @@ jobs:
             - blah blah
             - yap yap
           assignees: peter-bread
-          # reviewers: peter-bread
           draft: false
-        
