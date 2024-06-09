@@ -22,14 +22,12 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          # token: ${{ secrets.PAT }}
           commit-message: Update submodule
           branch: update-submodule
           delete-branch: false
           title: Update Submodule
           body: |
             Update Submodule
-            - blah blah
-            - yap yap
+            ${{ github.event.client_payload.myinfo }}
           assignees: peter-bread
           draft: false
