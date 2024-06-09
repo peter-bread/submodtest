@@ -6,9 +6,6 @@ on:
 jobs:
   update-submodule:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: write
-    #   pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,6 +14,8 @@ jobs:
           submodules: recursive
       - name: Make changes (update submodule)
         run: |
+          git config --global user.name github-actions[bot]
+          git config --global user.email <41898282+github-actions[bot]@users.noreply.github.com>
           git submodule update --init --recursive --remote -f
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -35,7 +34,7 @@ jobs:
             Update Submodule
             - blah blah
             - yap yap
-          # assignees: peter-bread
+          assignees: peter-bread
           # reviewers: peter-bread
           draft: false
         
