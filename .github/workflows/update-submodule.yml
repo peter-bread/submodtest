@@ -20,6 +20,10 @@ jobs:
       - name: Make changes (update submodule)
         run: |
           git submodule update --init --recursive --remote -f
+      - name: Get commit messages
+        id: commits
+        run: |
+          echo "commit_messages=$(jq -r '.[].message' ${{ toJson(github.event.client_payload.commits) }})" >> $GITHUB_OUTPUT
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
@@ -33,6 +37,6 @@ jobs:
 
             ${{ github.event.client_payload.commit_msg }}
 
-            $(jq -r '.[].message' ${{ toJson(github.event.client_payload.commits) }})
+            ${{ steps.commits.outputs.commit_messages }}
           assignees: peter-bread
           draft: false
