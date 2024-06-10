@@ -7,10 +7,14 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      # - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
       - run: |
-          gh auth status
           gh issue comment $ISSUE --body "Thank you for opening this issue!"
+          git checkout -b my-new-branch
+          touch my-new-file.txt
+          echo "hello" >> my-new-file.txt
+          git add -A
+          git commit -m "added file"
+          git push origin my-new-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.html_url }}
