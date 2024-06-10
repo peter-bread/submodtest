@@ -20,22 +20,6 @@ jobs:
       - name: Make changes (update submodule)
         run: |
           git submodule update --init --recursive --remote -f
-
-
-      - name: Save commits
-        run: |
-          echo '${{ toJson(github.event.client_payload.commits) }}' > commits.json
-          cat commits.json
-
-
-      - name: Get commit messages
-        id: commits
-        run: |
-          commit_messages=$(jq -r '.[].message' commits.json)
-          echo "$commit_messages"
-          echo "commit_messages=$commit_messages" >> $GITHUB_OUTPUT
-
-
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v6
@@ -46,9 +30,5 @@ jobs:
           title: Update Submodule
           body: |
             Update Submodule
-
-            ${{ github.event.client_payload.commit_msg }}
-
-            ${{ steps.commits.outputs.commit_messages }}
           assignees: peter-bread
           draft: false
