@@ -11,14 +11,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: configure git
+        uses: peter-bread/setup-github-actions-bot@1
+
       - run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b new-branch
           echo "hello" >> my-new-file.txt
           git add -A
           git commit -m "added new file"
           git push origin new-branch
-        # env:
-        #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #   ISSUE: ${{ github.event.issue.html_url }}
