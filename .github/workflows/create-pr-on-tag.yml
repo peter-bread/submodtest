@@ -1,0 +1,15 @@
+name: Create PR on tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          gh pr create --base "main" --head "new-branch" --title "demo pr" --body "how cool is this" --assignee "peter-bread"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
