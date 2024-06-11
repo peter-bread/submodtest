@@ -9,6 +9,7 @@ jobs:
   open-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: |
           gh pr create --base "main" --head "new-branch" --title "demo pr" --body "how cool is this" --assignee "peter-bread"
         env:
